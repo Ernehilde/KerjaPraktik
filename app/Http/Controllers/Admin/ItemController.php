@@ -12,7 +12,7 @@ class ItemController extends Controller
 {
     public function index() : View
     {
-        $items = Items::orderBy('id', 'desc')->paginate(10);
+        $items = Items::oldest()->paginate(10);
         return view("items.items", compact('items'));
     }
 

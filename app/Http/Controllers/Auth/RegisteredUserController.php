@@ -17,6 +17,12 @@ class RegisteredUserController extends Controller
     /**
      * Display the registration view.
      */
+
+     public function index() : View
+    {
+        $lists = User::oldest()->paginate(10);
+        return view("admin.user", compact('lists'));
+    }
     public function create(): View
     {
         return view('auth.register');
@@ -42,10 +48,6 @@ class RegisteredUserController extends Controller
             'usertype' => $request->usertype,
         ]);
 
-        event(new Registered($user));
-
-        Auth::login($user);
-
-        return redirect(route('dashboard', absolute: false));
+        return redirect(route('admin.users', absolute: false));
     }
 }

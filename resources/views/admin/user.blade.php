@@ -11,6 +11,9 @@
             <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-600 dark:text-white">
                 <tr>
                     <th scope="col" class="px-6 py-3">
+                        No.
+                    </th>
+                    <th scope="col" class="px-6 py-3">
                         Username
                     </th>
                     <th scope="col" class="px-6 py-3">
@@ -25,91 +28,26 @@
                 </tr>
             </thead>
             <tbody>
-                <tr
-                    class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
-                    <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                        Apple MacBook Pro 17"
-                    </th>
-                    <td class="px-6 py-4">
-                        Silver
-                    </td>
-                    <td class="px-6 py-4">
-                        Laptop
-                    </td>
+                @forelse ($lists as $list)
+                <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
+                    <td class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">{{ $loop->iteration }}</td>
+                    <td class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">{{ $list->name }}</td>
+                    <td class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">{{ $list->email }}</td>
+                    <td class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">{{ $list->usertype }}</td>
                     <td class="flex items-center px-6 py-4">
                         <a href="#" class="font-medium text-blue-600 dark:text-blue-500 hover:underline">Edit</a>
                         <x-delete-btn />
                     </td>
                 </tr>
-                <tr
-                    class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
-                    <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                        Microsoft Surface Pro
-                    </th>
-                    <td class="px-6 py-4">
-                        White@test.com
-                    </td>
-                    <td class="px-6 py-4">
-                        Laptop PC
-                    </td>
-                    <td class="flex items-center px-6 py-4">
-                        <a href="#" class="font-medium text-blue-600 dark:text-blue-500 hover:underline">Edit</a>
-                        <a href="#"
-                            class="font-medium text-red-600 dark:text-red-500 hover:underline ms-3">Remove</a>
-                    </td>
-                </tr>
-                <tr
-                    class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
-                    <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                        Magic Mouse 2
-                    </th>
-                    <td class="px-6 py-4">
-                        Black@test.com
-                    </td>
-                    <td class="px-6 py-4">
-                        Accessories
-                    </td>
-                    <td class="flex items-center px-6 py-4">
-                        <a href="#" class="font-medium text-blue-600 dark:text-blue-500 hover:underline">Edit</a>
-                        <a href="#"
-                            class="font-medium text-red-600 dark:text-red-500 hover:underline ms-3">Remove</a>
-                    </td>
-                </tr>
-                <tr
-                    class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
-                    <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                        Apple Watch
-                    </th>
-                    <td class="px-6 py-4">
-                        Black@test.com
-                    </td>
-                    <td class="px-6 py-4">
-                        Watches
-                    </td>
-                    <td class="flex items-center px-6 py-4">
-                        <a href="#" class="font-medium text-blue-600 dark:text-blue-500 hover:underline">Edit</a>
-                        <a href="#"
-                            class="font-medium text-red-600 dark:text-red-500 hover:underline ms-3">Remove</a>
-                    </td>
-                </tr>
-                <tr
-                    class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
-                    <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                        Apple iMac
-                    </th>
-                    <td class="px-6 py-4">
-                        Silver@test.com
-                    </td>
-                    <td class="px-6 py-4">
-                        PC
-                    </td>
-                    <td class="flex items-center px-6 py-4">
-                        <a href="#" class="font-medium text-blue-600 dark:text-blue-500 hover:underline">Edit</a>
-                        <x-delete-btn />
-                    </td>
-                </tr>
+            @empty
+            <div class="p-4 mb-4 text-sm text-red-800 rounded-lg bg-red-50 dark:bg-gray-800 dark:text-red-400" role="alert">
+                <span class="font-medium">Danger alert!</span> Change a few things up and try submitting again.
+              </div>
+            @endforelse
             </tbody>
         </table>
+        {{ $lists->links('components.pagination') }}
     </div>
 
 </x-app-layout>
+
