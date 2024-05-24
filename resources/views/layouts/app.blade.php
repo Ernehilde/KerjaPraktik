@@ -18,7 +18,7 @@
 </head>
 
 <body class="font-sans antialiased">
-    <div class="min-h-screen bg-gray-100">
+    <div class="min-h-screen bg-gray-100 dark:bg-gray-700">
         @include('layouts.navigation')
 
         <!-- Page Heading -->
@@ -28,12 +28,11 @@
                 </div>
             </header>
         @endif
-        @include('components.admin-sidebar')
+        @include('layouts.sidebar')
 
-        {{-- <main>
+        <main class="p-4 sm:ml-64 py-8 dark:bg-gray-700">
             {{ $slot }}
-        </main> --}}
-        <div class="">@include('components.user-component')</div>
+        </main>
     </div>
 </body>
 
